@@ -2,38 +2,119 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private GameObject[] Obstacles;
+    private GameObject[] Boxes;
+
+    private bool ReadyToMove = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Obstacles = GameObject.FindGameObjectsWithTag("Wall");
+        Boxes = GameObject.FindGameObjectsWithTag("Pushable");
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movement.Normalize();
+
+        if (movement.sqrMagnitude > 0.5)
+        {
+            if (ReadyToMove)
+            {
+                ReadyToMove = false;
+                Move(movement);
+            }
+        }
+        else
+        {
+            ReadyToMove = true;
+        }
+
+        /*
         if (Input.GetButtonDown("Horizontal"))
         {
-            if (Input.GetAxis("Horizontal") < 0)
+            if (Input.GetAxis("Horizontal") < 0 && Move(new Vector2(-1.0f, 0.0f)))
             {
                 this.transform.Translate(-1.0f, 0.0f, 0.0f);
             }
-            else if (Input.GetAxis("Horizontal") > 0)
+            else if (Input.GetAxis("Horizontal") > 0 && Move(new Vector2(1.0f, 0.0f)))
             {
                 this.transform.Translate(1.0f, 0.0f, 0.0f);
             }
 
-        } else if (Input.GetButtonDown("Vertical"))
+        }
+        else if (Input.GetButtonDown("Vertical"))
         {
-            if (Input.GetAxis("Vertical") > 0)
+            if (/*Input.GetAxis("Vertical") > 0 && Move(new Vector2(0.0f, 1.0f)))
             {
                 this.transform.Translate(0.0f, 1.0f, 0.0f);
             }
-            else if (Input.GetAxis("Vertical") < 0)
+            else if (/*Input.GetAxis("Vertical") < 0 && Move(new Vector2(0.0f, -1.0f)))
             {
                 this.transform.Translate(0.0f, -1.0f, 0.0f);
             }
-            
+
         }
         
+        */
+        
+    }
+
+    public bool Move(Vector2 direction)
+    {
+        if(Mathf.Abs(direction.x) < 0.5)
+        {
+            direction.x = 0;
+        }
+        else
+        {
+            direction.y = 0;
+        }
+        direction.Normalize();
+
+        if(Blocked(transform.position, direction))
+        {
+            return false;
+        }
+        else
+        {
+            transform.Translate(direction);
+            return true;
+        }
+    }
+
+    public bool Blocked(Vector3 pos, Vector2 direction)
+    {
+        Vector2 newpos = new Vector2(pos.x + direction.x, pos.y + direction.y);
+
+        foreach (var obs in Obstacles)
+        {
+            if(obs.transform.position.x == newpos.x && obs.transform.position.y == newpos.y)
+            {
+                return true;
+            }
+        }
+
+        foreach (var box in Boxes)
+        {
+            if (box.transform.position.x == newpos.x && box.transform.position.y == newpos.y)
+            {
+                Push boxObj = box.GetComponent<Push>();
+
+                if(boxObj && boxObj.Move(direction))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
