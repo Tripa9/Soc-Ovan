@@ -13,7 +13,9 @@ public class SceneManager : MonoBehaviour
     private int lineIndex;
     public float typingTime = 0.05f;
 
+    private bool startDialogueNotEnded = true;
     private bool ending = true;
+    private bool inputByUser = false;
 
     private GameObject[] Obstacles;
     private GameObject[] Boxes;
@@ -51,6 +53,7 @@ public class SceneManager : MonoBehaviour
         }
         if (dialogueText.text == dialogueLines[lineIndex])
         {
+
             yield return new WaitForSeconds(1.0f);
             NextDialogueLine();
         }
@@ -69,12 +72,28 @@ public class SceneManager : MonoBehaviour
 
             var movementScript = _player.GetComponent<PlayerMovement>();
             movementScript.enabled = true;
+
+            startDialogueNotEnded = false;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (startDialogueNotEnded)
+        {
+            if (Input.GetButtonDown("Fire1") && !inputByUser)
+            {
+                inputByUser = true;
+                StopAllCoroutines();
+                dialogueText.text = dialogueLines[lineIndex];
+            }
+            else if(Input.GetButtonDown("Fire1"))
+            {
+                inputByUser = false;
+                NextDialogueLine();
+            }
+        }
         foreach (var goal in Goals)
         {
             foreach (var box in Boxes)
