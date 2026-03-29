@@ -7,11 +7,20 @@ public class PlayerMovement : MonoBehaviour
 
     private bool ReadyToMove = true;
 
+    [Header("Sprites jugador")]
+    [SerializeField] private Sprite sUp;
+    [SerializeField] private Sprite sDown;
+    [SerializeField] private Sprite sLeft;
+    [SerializeField] private Sprite sRight;
+
+    private SpriteRenderer sRenderer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Obstacles = GameObject.FindGameObjectsWithTag("Wall");
         Boxes = GameObject.FindGameObjectsWithTag("Pushable");
+        sRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -75,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
         }
         direction.Normalize();
 
+        UpdateSprite(direction);
+
         if(Blocked(transform.position, direction))
         {
             return false;
@@ -84,6 +95,14 @@ public class PlayerMovement : MonoBehaviour
             transform.Translate(direction);
             return true;
         }
+    }
+
+    private void UpdateSprite(Vector2 dir)
+    {
+        if (dir.x > 0) sRenderer.sprite = sRight;
+        else if (dir.x < 0) sRenderer.sprite = sLeft;
+        else if (dir.y > 0) sRenderer.sprite = sUp;
+        else if (dir.y < 0) sRenderer.sprite = sDown;
     }
 
     public bool Blocked(Vector3 pos, Vector2 direction)
