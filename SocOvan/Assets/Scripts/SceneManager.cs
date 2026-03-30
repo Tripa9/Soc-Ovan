@@ -9,7 +9,11 @@ public class SceneManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private GameObject _player;
-    [SerializeField, TextArea(4, 6)] private string[] dialogueLines;
+
+    [Header("Configuración de Diálogos")]
+    [SerializeField, TextArea(3, 5)] private string[] startDialogueLines;
+    [SerializeField, TextArea(3, 5)] private string[] endDialogueLines;
+
     private int lineIndex;
     public float typingTime = 0.05f;
 
@@ -46,12 +50,12 @@ public class SceneManager : MonoBehaviour
     private IEnumerator ShowLine()
     {
         dialogueText.text = string.Empty;
-        foreach (char ch in dialogueLines[lineIndex])
+        foreach (char ch in startDialogueLines[lineIndex])
         {
             dialogueText.text += ch;
             yield return new WaitForSeconds(typingTime);
         }
-        if (dialogueText.text == dialogueLines[lineIndex])
+        if (dialogueText.text == startDialogueLines[lineIndex])
         {
 
             yield return new WaitForSeconds(1.0f);
@@ -62,7 +66,7 @@ public class SceneManager : MonoBehaviour
     private void NextDialogueLine()
     {
         lineIndex++;
-        if (lineIndex < 3 )
+        if (lineIndex < startDialogueLines.Length )
         {
             StartCoroutine(ShowLine());
         }
@@ -92,7 +96,7 @@ public class SceneManager : MonoBehaviour
             {
                 inputByUser = true;
                 StopAllCoroutines();
-                dialogueText.text = dialogueLines[lineIndex];
+                dialogueText.text = startDialogueLines[lineIndex];
             }
             else if(Input.GetButtonDown("Fire1"))
             {
@@ -130,18 +134,19 @@ public class SceneManager : MonoBehaviour
     void StartFinishingLine()
     {
         dialoguePanel.SetActive(true);
+        lineIndex = 0;
         StartCoroutine(ShowLineFinish());
     }
 
     private IEnumerator ShowLineFinish()
     {
         dialogueText.text = string.Empty;
-        foreach (char ch in dialogueLines[lineIndex])
+        foreach (char ch in endDialogueLines[lineIndex])
         {
             dialogueText.text += ch;
             yield return new WaitForSeconds(typingTime);
         }
-        if (dialogueText.text == dialogueLines[lineIndex])
+        if (dialogueText.text == endDialogueLines[lineIndex])
         {
             yield return new WaitForSeconds(1.0f);
             NextFinishLine();
@@ -151,7 +156,7 @@ public class SceneManager : MonoBehaviour
     private void NextFinishLine()
     {
         lineIndex++;
-        if (lineIndex < dialogueLines.Length)
+        if (lineIndex < endDialogueLines.Length)
         {
             StartCoroutine(ShowLineFinish());
         }

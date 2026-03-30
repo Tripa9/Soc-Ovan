@@ -5687,6 +5687,36 @@ PrefabInstance:
       propertyPath: dialoguePanel
       value: 
       objectReference: {fileID: 522107698}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: endDialogueLines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: startDialogueLines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: 'endDialogueLines.Array.data[0]'
+      value: "Ov\xE1n: Uffff... ha sido m\xE1s complicado de lo que pensaba."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: 'endDialogueLines.Array.data[1]'
+      value: "Ov\xE1n: Espero que el bocadillo valga la pena."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: 'startDialogueLines.Array.data[0]'
+      value: "Cocinera: Ov\xE1n, te has ganado un premio. S\xE9 un caballero y tr\xE1eme
+        toda la carne de la despensa."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: 'startDialogueLines.Array.data[1]'
+      value: "Cocinera: No est\xE1s preparado para el bocata que te voy a hacer..."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: 'startDialogueLines.Array.data[2]'
+      value: "Ov\xE1n: \xBFToda esta carne?\xBFDe verdad? \xA1Ov\xE1n manos a la
+        obra!"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

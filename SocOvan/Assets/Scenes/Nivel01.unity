@@ -6018,12 +6018,15 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1260168585}
   dialogueText: {fileID: 1962042240}
   _player: {fileID: 2140425452}
-  dialogueLines:
-  - "Encargado: \xA1Venga, esa carne de caballo no se va a mover sola!"
-  - "Encargado: Haz el favor de llevarla hasta la esquina, \xBFquieres?"
-  - "Ov\xE1n: S\xED que est\xE1n mandones \xFAltimamente... En fin, a mover cajas."
-  - "Ov\xE1n: Pues ya estar\xEDa."
-  - "Ov\xE1n: Che, a ver si me sirven un buen chivito cuando termine esto."
+  startDialogueLines:
+  - "Jefe: \xA1Ov\xE1n, nos han llamado desde la Pascuala, dale que esa carne de
+    caballo no se va a mover sola!"
+  - "Jefe: Haz el favor de llevarla hasta la esquina, \xBFquieres?"
+  - "Ov\xE1n: Si que est\xE1s mand\xF3n jefe... En fin, a mover cajas."
+  endDialogueLines:
+  - "Ov\xE1n: Pues ya estar\xEDa, otro duro d\xEDa de trabajo."
+  - "Ov\xE1n: ..................................."
+  - "Ov\xE1n: Che, a ver si me sirven un buen chivito como propina por el trabajo."
   typingTime: 0.05
 --- !u!1 &2110114923
 GameObject:
