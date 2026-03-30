@@ -80,6 +80,12 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+
         if (startDialogueNotEnded)
         {
             if (Input.GetButtonDown("Fire1") && !inputByUser)
@@ -94,21 +100,29 @@ public class SceneManager : MonoBehaviour
                 NextDialogueLine();
             }
         }
+
+        int boxesInGoal = 0;
+
         foreach (var goal in Goals)
         {
             foreach (var box in Boxes)
             {
                 if (goal.transform.position.x == box.transform.position.x && goal.transform.position.y == box.transform.position.y)
                 {
-                    if (ending)
-                    {
-                        var movementScript = _player.GetComponent<PlayerMovement>();
-
-                        movementScript.enabled = false;
-                        StartFinishingLine();
-                        ending = false;
-                    }
+                    boxesInGoal++; break;
                 }
+            }
+        }
+
+        if (boxesInGoal == Goals.Length)
+        {
+            if (ending)
+            {
+                var movementScript = _player.GetComponent<PlayerMovement>();
+
+                movementScript.enabled = false;
+                StartFinishingLine();
+                ending = false;
             }
         }
     }
