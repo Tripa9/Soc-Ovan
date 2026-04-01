@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,12 +15,15 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer sRenderer;
 
+    SceneManager mySceneManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Obstacles = GameObject.FindGameObjectsWithTag("Wall");
         Boxes = GameObject.FindGameObjectsWithTag("Pushable");
         sRenderer = GetComponent<SpriteRenderer>();
+        mySceneManager= Object.FindFirstObjectByType<SceneManager>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 ReadyToMove = false;
                 Move(movement);
+                mySceneManager.RecordState();
             }
         }
         else
