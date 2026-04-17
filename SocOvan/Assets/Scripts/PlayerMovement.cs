@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer sRenderer;
 
-    SceneManager mySceneManager;
+    public Vector2 direction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         movement.Normalize();
+        direction = movement;
 
         if (movement.sqrMagnitude > 0.5)
         {
@@ -45,36 +46,8 @@ public class PlayerMovement : MonoBehaviour
         {
             ReadyToMove = true;
         }
-
-        /*
-        if (Input.GetButtonDown("Horizontal"))
-        {
-            if (Input.GetAxis("Horizontal") < 0 && Move(new Vector2(-1.0f, 0.0f)))
-            {
-                this.transform.Translate(-1.0f, 0.0f, 0.0f);
-            }
-            else if (Input.GetAxis("Horizontal") > 0 && Move(new Vector2(1.0f, 0.0f)))
-            {
-                this.transform.Translate(1.0f, 0.0f, 0.0f);
-            }
-
-        }
-        else if (Input.GetButtonDown("Vertical"))
-        {
-            if (/*Input.GetAxis("Vertical") > 0 && Move(new Vector2(0.0f, 1.0f)))
-            {
-                this.transform.Translate(0.0f, 1.0f, 0.0f);
-            }
-            else if (/*Input.GetAxis("Vertical") < 0 && Move(new Vector2(0.0f, -1.0f)))
-            {
-                this.transform.Translate(0.0f, -1.0f, 0.0f);
-            }
-
-        }
-        
-        */
-        
     }
+
 
     public bool Move(Vector2 direction)
     {
@@ -100,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
     }
+
 
     private void UpdateSprite(Vector2 dir)
     {

@@ -8,11 +8,13 @@ using System.Runtime.CompilerServices;
 
 public class SceneManager : MonoBehaviour
 {
-    [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private GameObject dialoguePanel = null;
+    [SerializeField] private TMP_Text dialogueText = null;
     [SerializeField] private GameObject _player;
 
-    [Header("ConfiguraciÛn de Di·logos")]
+    [SerializeField] private bool hasDialogues;
+
+    [Header("Configuraci√≥n de Di√°logos")]
     [SerializeField, TextArea(3, 5)] private string[] startDialogueLines;
     [SerializeField, TextArea(3, 5)] private string[] endDialogueLines;
 
@@ -23,7 +25,6 @@ public class SceneManager : MonoBehaviour
     private bool ending = true;
     private bool inputByUser = false;
 
-    private GameObject[] Obstacles;
     private GameObject[] Boxes;
     private GameObject[] Goals;
 
@@ -45,35 +46,22 @@ public class SceneManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Obstacles = GameObject.FindGameObjectsWithTag("Wall");
         Boxes = GameObject.FindGameObjectsWithTag("Pushable");
         Goals = GameObject.FindGameObjectsWithTag("Goal");
 
         var movementScript = _player.GetComponent<PlayerMovement>();
 
         movementScript.enabled = false;
+        Debug.Log(dialoguePanel != null);
 
-        StartDialogue();
-        RecordState();
-    }
-
-    public void RecordState()
-    {
-        Vector3[] currentBoxPositions = new Vector3[Boxes.Length];
-        for (int i = 0; i < Boxes.Length; i++)
+        if (hasDialogues)
         {
-            currentBoxPositions[i] = Boxes[i].transform.position;
+            StartDialogue();
         }
-        stateHistory.Add(new GameState(_player.transform.position, currentBoxPositions));
-    }
-
-    private void Undo()
-    {
-        
-        if (stateHistory.Count > 1)
+        else
         {
-            
-            stateHistory.RemoveAt(stateHistory.Count - 1); 
+            _player.GetComponent<PlayerMovement>().enabled = true;
+        }
 
             GameState previousState = stateHistory[stateHistory.Count - 1];
 
@@ -151,18 +139,21 @@ public class SceneManager : MonoBehaviour
             Undo();
         }
 
-        if (startDialogueNotEnded)
+        if (hasDialogues)
         {
-            if (Input.GetButtonDown("Fire1") && !inputByUser)
+            if (startDialogueNotEnded)
             {
-                inputByUser = true;
-                StopAllCoroutines();
-                dialogueText.text = startDialogueLines[lineIndex];
-            }
-            else if(Input.GetButtonDown("Fire1"))
-            {
-                inputByUser = false;
-                NextDialogueLine();
+                if (Input.GetButtonDown("Fire1") && !inputByUser)
+                {
+                    inputByUser = true;
+                    StopAllCoroutines();
+                    dialogueText.text = startDialogueLines[lineIndex];
+                }
+                else if (Input.GetButtonDown("Fire1"))
+                {
+                    inputByUser = false;
+                    NextDialogueLine();
+                }
             }
         }
 
