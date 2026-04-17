@@ -3,6 +3,8 @@ using System.Linq.Expressions;
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class SceneManager : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class SceneManager : MonoBehaviour
 
     [SerializeField] private bool hasDialogues;
 
-    [Header("ConfiguraciÛn de Di·logos")]
+    [Header("Configuraci√≥n de Di√°logos")]
     [SerializeField, TextArea(3, 5)] private string[] startDialogueLines;
     [SerializeField, TextArea(3, 5)] private string[] endDialogueLines;
 
@@ -25,6 +27,21 @@ public class SceneManager : MonoBehaviour
 
     private GameObject[] Boxes;
     private GameObject[] Goals;
+
+    private class GameState
+    {
+        public Vector3 ovanPos;
+        public Vector3[] boxPos;
+
+        public GameState(Vector3 playerPos, Vector3[] boxesPos)
+        {
+            ovanPos = playerPos;
+            boxPos = (Vector3[])boxesPos.Clone();  //Esto es para guardar los valores y no una referencia, mi cara cuando Unity
+        }
+    }
+
+    private List<GameState> stateHistory = new List<GameState>();
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,6 +63,14 @@ public class SceneManager : MonoBehaviour
             _player.GetComponent<PlayerMovement>().enabled = true;
         }
 
+            GameState previousState = stateHistory[stateHistory.Count - 1];
+
+            _player.transform.position = previousState.ovanPos;
+            for (int i = 0; i < Boxes.Length; i++)
+            {
+                Boxes[i].transform.position = previousState.boxPos[i];
+            }
+        }
     }
 
     void StartDialogue()
@@ -93,9 +118,25 @@ public class SceneManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !startDialogueNotEnded)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            if (stateHistory.Count > 0)
+            {
+                GameState initialState = stateHistory[0];
+
+                _player.transform.position = initialState.ovanPos;
+                for (int i = 0; i < Boxes.Length; i++)
+                {
+                    Boxes[i].transform.position = initialState.boxPos[i];
+                }
+
+                RecordState();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) && !startDialogueNotEnded)
+        {
+            Undo();
         }
 
         if (hasDialogues)
