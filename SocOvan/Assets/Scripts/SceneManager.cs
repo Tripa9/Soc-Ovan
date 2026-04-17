@@ -6,9 +6,11 @@ using System.Collections;
 
 public class SceneManager : MonoBehaviour
 {
-    [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private GameObject dialoguePanel = null;
+    [SerializeField] private TMP_Text dialogueText = null;
     [SerializeField] private GameObject _player;
+
+    [SerializeField] private bool hasDialogues;
 
     [Header("Configuración de Diálogos")]
     [SerializeField, TextArea(3, 5)] private string[] startDialogueLines;
@@ -21,22 +23,28 @@ public class SceneManager : MonoBehaviour
     private bool ending = true;
     private bool inputByUser = false;
 
-    private GameObject[] Obstacles;
     private GameObject[] Boxes;
     private GameObject[] Goals;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Obstacles = GameObject.FindGameObjectsWithTag("Wall");
         Boxes = GameObject.FindGameObjectsWithTag("Pushable");
         Goals = GameObject.FindGameObjectsWithTag("Goal");
 
         var movementScript = _player.GetComponent<PlayerMovement>();
 
         movementScript.enabled = false;
+        Debug.Log(dialoguePanel != null);
 
-        StartDialogue();
+        if (hasDialogues)
+        {
+            StartDialogue();
+        }
+        else
+        {
+            _player.GetComponent<PlayerMovement>().enabled = true;
+        }
 
     }
 
@@ -90,18 +98,21 @@ public class SceneManager : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
 
-        if (startDialogueNotEnded)
+        if (hasDialogues)
         {
-            if (Input.GetButtonDown("Fire1") && !inputByUser)
+            if (startDialogueNotEnded)
             {
-                inputByUser = true;
-                StopAllCoroutines();
-                dialogueText.text = startDialogueLines[lineIndex];
-            }
-            else if(Input.GetButtonDown("Fire1"))
-            {
-                inputByUser = false;
-                NextDialogueLine();
+                if (Input.GetButtonDown("Fire1") && !inputByUser)
+                {
+                    inputByUser = true;
+                    StopAllCoroutines();
+                    dialogueText.text = startDialogueLines[lineIndex];
+                }
+                else if (Input.GetButtonDown("Fire1"))
+                {
+                    inputByUser = false;
+                    NextDialogueLine();
+                }
             }
         }
 
