@@ -52,7 +52,6 @@ public class SceneManager : MonoBehaviour
         var movementScript = _player.GetComponent<PlayerMovement>();
 
         movementScript.enabled = false;
-        Debug.Log(dialoguePanel != null);
 
         if (hasDialogues)
         {
