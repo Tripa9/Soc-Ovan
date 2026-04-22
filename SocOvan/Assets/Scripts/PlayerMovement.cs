@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite sDown;
     [SerializeField] private Sprite sLeft;
     [SerializeField] private Sprite sRight;
+    [SerializeField] SceneManager mySceneManager;
 
     private SpriteRenderer sRenderer;
 
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         Obstacles = GameObject.FindGameObjectsWithTag("Wall");
         Boxes = GameObject.FindGameObjectsWithTag("Pushable");
         sRenderer = GetComponent<SpriteRenderer>();
-        mySceneManager= Object.FindFirstObjectByType<SceneManager>();
+        mySceneManager = Object.FindFirstObjectByType<SceneManager>();
     }
 
     // Update is called once per frame

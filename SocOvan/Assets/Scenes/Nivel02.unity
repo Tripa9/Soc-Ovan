@@ -3847,6 +3847,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1406005065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+  m_PrefabInstance: {fileID: 6106882345045025438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f7871bff6db0c40b5db512d05f4c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1463443562
 GameObject:
   m_ObjectHideFlags: 0
@@ -5561,6 +5572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8213711347624996776, guid: 2dfd0b9e5e5d9024f8ff312c28ccfb58, type: 3}
+      propertyPath: mySceneManager
+      value: 
+      objectReference: {fileID: 1406005065}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5683,6 +5698,10 @@ PrefabInstance:
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 1555914219}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: hasDialogues
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
       propertyPath: dialoguePanel
       value: 

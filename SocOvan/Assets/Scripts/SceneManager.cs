@@ -63,14 +63,9 @@ public class SceneManager : MonoBehaviour
             _player.GetComponent<PlayerMovement>().enabled = true;
         }
 
-            GameState previousState = stateHistory[stateHistory.Count - 1];
 
-            _player.transform.position = previousState.ovanPos;
-            for (int i = 0; i < Boxes.Length; i++)
-            {
-                Boxes[i].transform.position = previousState.boxPos[i];
-            }
-        }
+
+        RecordState();
     }
 
     void StartDialogue()
@@ -218,6 +213,34 @@ public class SceneManager : MonoBehaviour
 
             var movementScript = _player.GetComponent<PlayerMovement>();
             movementScript.enabled = true;
+        }
+    }
+
+    public void RecordState()
+    {
+        Vector3[] currentBoxPositions = new Vector3[Boxes.Length];
+        for (int i = 0; i < Boxes.Length; i++)
+        {
+            currentBoxPositions[i] = Boxes[i].transform.position;
+        }
+        stateHistory.Add(new GameState(_player.transform.position, currentBoxPositions));
+    }
+
+    private void Undo()
+    {
+        if (stateHistory.Count > 1)
+        {
+            Debug.Log("AAAA ME DUELE AAA");
+
+            stateHistory.RemoveAt(stateHistory.Count - 1);
+
+            GameState previousState = stateHistory[stateHistory.Count - 1];
+
+            _player.transform.position = previousState.ovanPos;
+            for (int i = 0; i < Boxes.Length; i++)
+            {
+                Boxes[i].transform.position = previousState.boxPos[i];
+            }
         }
     }
 }
