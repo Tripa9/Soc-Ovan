@@ -6018,6 +6018,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1260168585}
   dialogueText: {fileID: 1962042240}
   _player: {fileID: 2140425452}
+  hasDialogues: 1
   startDialogueLines:
   - "Jefe: \xA1Ov\xE1n, nos han llamado desde la Pascuala, dale que esa carne de
     caballo no se va a mover sola!"
@@ -6027,6 +6028,7 @@ MonoBehaviour:
   - "Ov\xE1n: Pues ya estar\xEDa, otro duro d\xEDa de trabajo."
   - "Ov\xE1n: ..................................."
   - "Ov\xE1n: Che, a ver si me sirven un buen chivito como propina por el trabajo."
+  nextScene: Nivel02
   typingTime: 0.05
 --- !u!1 &2110114923
 GameObject:

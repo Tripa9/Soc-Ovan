@@ -18,6 +18,8 @@ public class SceneManager : MonoBehaviour
     [SerializeField, TextArea(3, 5)] private string[] startDialogueLines;
     [SerializeField, TextArea(3, 5)] private string[] endDialogueLines;
 
+    [SerializeField] string nextScene;
+
     private int lineIndex;
     public float typingTime = 0.05f;
 
@@ -212,6 +214,7 @@ public class SceneManager : MonoBehaviour
 
             var movementScript = _player.GetComponent<PlayerMovement>();
             movementScript.enabled = true;
+            UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
         }
     }
 

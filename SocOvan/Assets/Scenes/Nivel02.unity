@@ -5695,6 +5695,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2140425452}
     - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: nextScene
+      value: Nivel03
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 1555914219}
