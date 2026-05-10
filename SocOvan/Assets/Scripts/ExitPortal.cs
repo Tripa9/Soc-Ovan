@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 //using static Unity.Collections.AllocatorManager;
 
 public class ExitPortal : MonoBehaviour
@@ -21,6 +22,14 @@ public class ExitPortal : MonoBehaviour
             if (box.transform.position.x == this.transform.position.x && box.transform.position.y == this.transform.position.y)
             {
                 BoxOn = box;
+            }
+        }
+
+        if(BoxOn != null)
+        {
+            if (BoxOn.transform.position.x != this.transform.position.x && BoxOn.transform.position.y != this.transform.position.y)
+            {
+                BoxOn = null;
             }
         }
     }
