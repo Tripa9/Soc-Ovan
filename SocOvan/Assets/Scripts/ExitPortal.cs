@@ -1,4 +1,5 @@
 using UnityEngine;
+//using static Unity.Collections.AllocatorManager;
 
 public class ExitPortal : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class ExitPortal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (var box in Boxes) 
+        {
+            if (box.transform.position.x == this.transform.position.x && box.transform.position.y == this.transform.position.y)
+            {
+                BoxOn = box;
+            }
+        }
     }
 }

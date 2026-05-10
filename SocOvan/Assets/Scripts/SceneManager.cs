@@ -61,10 +61,9 @@ public class SceneManager : MonoBehaviour
         }
         else
         {
+            startDialogueNotEnded = false;
             _player.GetComponent<PlayerMovement>().enabled = true;
         }
-
-
 
         RecordState();
     }
