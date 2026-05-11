@@ -39,8 +39,7 @@ public class PlayerMovement : MonoBehaviour
             if (ReadyToMove)
             {
                 ReadyToMove = false;
-                Move(movement);
-                mySceneManager.RecordState();
+                if(Move(movement)) mySceneManager.RecordState();
             }
         }
         else

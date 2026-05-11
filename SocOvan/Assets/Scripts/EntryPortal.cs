@@ -61,6 +61,7 @@ public class EntryPortal : MonoBehaviour
         }
     }
 
+    
     GameObject BoxOnPortal()
     {
         foreach (var box in Boxes)
