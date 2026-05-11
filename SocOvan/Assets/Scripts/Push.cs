@@ -76,7 +76,14 @@ public class Push : MonoBehaviour
                     {
                         
                         blocked = !portalBox.GetComponent<Push>().Move(direction);
-                        if(!blocked) inPortal.GetComponent<EntryPortal>().ExitPortal.GetComponent<ExitPortal>().BoxOn = null;
+                        if (!blocked)
+                        {
+                            inPortal.GetComponent<EntryPortal>().ExitPortal.GetComponent<ExitPortal>().BoxOn = null;
+                        }
+                        else
+                        {
+                            blocked = false;
+                        }
                         break;
                     }
                 }
