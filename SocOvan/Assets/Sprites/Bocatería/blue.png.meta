@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b8e7bc6a572c9d34ca07c60968cb2ee1
+guid: aece13546c771054488bbd9cc6c85988
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 252996424703762163
-    second: box bocata_0
+      213: -2615874204119335
+    second: blue_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: box bocata_0
+      name: blue_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3fe59e768e2d28300800000000000000
-      internalID: 252996424703762163
+      spriteID: 9de494350e4b6fff0800000000000000
+      internalID: -2615874204119335
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      box bocata_0: 252996424703762163
+      blue_0: -2615874204119335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

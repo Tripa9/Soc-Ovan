@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b8e7bc6a572c9d34ca07c60968cb2ee1
+guid: 0384073327b339940947c763ab7b2570
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 252996424703762163
-    second: box bocata_0
+      213: 8702397577948974102
+    second: CajaCiencia_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: box bocata_0
+      name: CajaCiencia_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3fe59e768e2d28300800000000000000
-      internalID: 252996424703762163
+      spriteID: 61c4ed76d7025c870800000000000000
+      internalID: 8702397577948974102
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      box bocata_0: 252996424703762163
+      CajaCiencia_0: 8702397577948974102
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
