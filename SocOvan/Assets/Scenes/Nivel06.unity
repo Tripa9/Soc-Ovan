@@ -22230,6 +22230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f7871bff6db0c40b5db512d05f4c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMixer: {fileID: 24100000, guid: ffe27efaf70b27c4aaaccc8bf590f85d, type: 2}
   dialoguePanel: {fileID: 1048000096}
   dialogueText: {fileID: 638611007}
   _player: {fileID: 2140425452}
@@ -22258,11 +22259,11 @@ AudioSource:
   m_GameObject: {fileID: 1979467675}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ffe27efaf70b27c4aaaccc8bf590f85d, type: 2}
   m_audioClip: {fileID: 8300000, guid: 97b1cdd48aebea5458f645ed2de3125f, type: 3}
   m_Resource: {fileID: 8300000, guid: 97b1cdd48aebea5458f645ed2de3125f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.047
+  m_Volume: 0.024
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -24366,6 +24367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7090472787997809613, guid: 2dfd0b9e5e5d9024f8ff312c28ccfb58, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1131357663740859256, guid: ffe27efaf70b27c4aaaccc8bf590f85d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

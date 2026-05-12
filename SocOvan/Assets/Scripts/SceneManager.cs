@@ -4,10 +4,13 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 //using System.Runtime.CompilerServices;
 
 public class SceneManager : MonoBehaviour
 {
+    public AudioMixer mainMixer;
+
     [SerializeField] private GameObject dialoguePanel = null;
     [SerializeField] private TMP_Text dialogueText = null;
     [SerializeField] private GameObject _player;
@@ -55,6 +58,9 @@ public class SceneManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        mainMixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(PlayerPrefs.GetFloat("MusicVol", 1f), 0.0001f)) * 20f);
+        mainMixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(PlayerPrefs.GetFloat("SFXVol", 1f), 0.0001f)) * 20f);
+
         Boxes = GameObject.FindGameObjectsWithTag("Pushable");
         Goals = GameObject.FindGameObjectsWithTag("Goal");
 

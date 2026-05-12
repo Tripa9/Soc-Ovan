@@ -1274,6 +1274,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Entry Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 6803491868721680201, guid: af08476e4b91719459ee30017d18e276, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1131357663740859256, guid: ffe27efaf70b27c4aaaccc8bf590f85d, type: 2}
     - target: {fileID: 9217104479392726690, guid: af08476e4b91719459ee30017d18e276, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.5
@@ -16783,6 +16787,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 5013cb3e120bf1d4794a3bca4de52a6e, type: 3}
+    - target: {fileID: 3124899088203880957, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 2324466666671709732, guid: ffe27efaf70b27c4aaaccc8bf590f85d, type: 2}
     - target: {fileID: 3363625036064555007, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -16827,6 +16835,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 947417149}
+    - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: mainMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: ffe27efaf70b27c4aaaccc8bf590f85d, type: 2}
     - target: {fileID: 8127506501490403497, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
       propertyPath: nextScene
       value: Nivel05
@@ -21029,6 +21041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7090472787997809613, guid: 2dfd0b9e5e5d9024f8ff312c28ccfb58, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1131357663740859256, guid: ffe27efaf70b27c4aaaccc8bf590f85d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
