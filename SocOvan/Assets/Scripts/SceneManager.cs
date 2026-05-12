@@ -20,6 +20,9 @@ public class SceneManager : MonoBehaviour
 
     [SerializeField] string nextScene;
 
+    [SerializeField] private GameObject pauseMenuPanel = null;
+    private bool isPaused = false;
+
     private int lineIndex;
     public float typingTime = 0.05f;
 
@@ -58,6 +61,8 @@ public class SceneManager : MonoBehaviour
         var movementScript = _player.GetComponent<PlayerMovement>();
 
         movementScript.enabled = false;
+
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
 
         if (hasDialogues)
         {
@@ -116,6 +121,20 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+
+        if (isPaused) return;
+
         var movementScript = _player.GetComponent<PlayerMovement>();
         if (Input.GetKeyDown(KeyCode.R) && !startDialogueNotEnded && movementScript.enabled)
         {
@@ -246,5 +265,45 @@ public class SceneManager : MonoBehaviour
                 Boxes[i].transform.position = previousState.boxPos[i];
             }
         }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(true);
+        Time.timeScale = 0f;
+        _player.GetComponent<PlayerMovement>().enabled = false;
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
+
+        Time.timeScale = 1f;
+
+        if (!startDialogueNotEnded && ending)
+        {
+            _player.GetComponent<PlayerMovement>().enabled = true;
+        }
+    }
+
+    public void SkipLevel()
+    {
+        Time.timeScale = 1f; 
+        if (!string.IsNullOrEmpty(nextScene))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(nextScene);
+        }
+        else
+        {
+            Debug.LogWarning("No hay siguiente escena configurada.");
+        }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f; 
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Splash");
     }
 }
