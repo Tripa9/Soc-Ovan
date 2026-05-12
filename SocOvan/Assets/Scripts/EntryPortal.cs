@@ -7,6 +7,8 @@ public class EntryPortal : MonoBehaviour
     public GameObject ExitPortal;
     public GameObject BoxAtExit;
 
+    public AudioSource portalAudio;
+
     // Variable para evitar comprobar todo el rato si el jugador puede pasar por un portal si lo ha pisado, no ha podido pasar y no se ha movido del sitio
     private bool notStaying;
 
@@ -26,15 +28,15 @@ public class EntryPortal : MonoBehaviour
 
         if (box_on != null && BoxAtExit == null)
         {
-            Debug.Log(box_on);
             box_on.transform.position = ExitPortal.transform.position;
             ExitPortal.GetComponent<ExitPortal>().BoxOn = box_on;
+            portalAudio.Play();
         }
         else if (Player.transform.position.x == this.transform.position.x && Player.transform.position.y == this.transform.position.y)
         {
             if (notStaying) {
                 notStaying = false;
-                //BoxAtExit = ExitPortal.GetComponent<ExitPortal>().BoxOn;
+                
                 if (BoxAtExit != null)
                 {
                     var movement = BoxAtExit.GetComponent<Push>();
@@ -44,6 +46,7 @@ public class EntryPortal : MonoBehaviour
                     {
                         ExitPortal.GetComponent<ExitPortal>().BoxOn = null;
                         Player.transform.position = ExitPortal.transform.position;
+                        portalAudio.Play();
                     }
 
 
@@ -51,6 +54,7 @@ public class EntryPortal : MonoBehaviour
                 else
                 {
                     Player.transform.position = ExitPortal.transform.position;
+                    portalAudio.Play();
                 }
             }
             

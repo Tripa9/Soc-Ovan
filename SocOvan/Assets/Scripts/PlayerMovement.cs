@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 direction;
 
+    public AudioSource playerAudio;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,7 +41,14 @@ public class PlayerMovement : MonoBehaviour
             if (ReadyToMove)
             {
                 ReadyToMove = false;
-                if(Move(movement)) mySceneManager.RecordState();
+                if (Move(movement))
+                {
+                    mySceneManager.RecordState();
+                }
+                else
+                {
+                    playerAudio.Play();
+                }
             }
         }
         else

@@ -1,10 +1,10 @@
-using Mono.Cecil;
-using System.Linq.Expressions;
+//using Mono.Cecil;
+//using System.Linq.Expressions;
 using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+//using System.Runtime.CompilerServices;
 
 public class SceneManager : MonoBehaviour
 {
@@ -29,6 +29,10 @@ public class SceneManager : MonoBehaviour
 
     private GameObject[] Boxes;
     private GameObject[] Goals;
+
+    public AudioSource sceneAudio;
+
+    public AudioClip allGoalsComplete;
 
     private class GameState
     {
@@ -112,8 +116,8 @@ public class SceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.R) && !startDialogueNotEnded)
+        var movementScript = _player.GetComponent<PlayerMovement>();
+        if (Input.GetKeyDown(KeyCode.R) && !startDialogueNotEnded && movementScript.enabled)
         {
             if (stateHistory.Count > 0)
             {
@@ -129,7 +133,7 @@ public class SceneManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && !startDialogueNotEnded)
+        if (Input.GetKeyDown(KeyCode.Q) && !startDialogueNotEnded && movementScript.enabled)
         {
             Undo();
         }
@@ -169,11 +173,10 @@ public class SceneManager : MonoBehaviour
         {
             if (ending)
             {
-                var movementScript = _player.GetComponent<PlayerMovement>();
-
+                ending = false;
+                sceneAudio.PlayOneShot(allGoalsComplete);
                 movementScript.enabled = false;
                 StartFinishingLine();
-                ending = false;
             }
         }
     }

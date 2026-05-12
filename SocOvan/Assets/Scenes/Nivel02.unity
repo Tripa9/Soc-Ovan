@@ -5572,6 +5572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7090472787997809613, guid: 2dfd0b9e5e5d9024f8ff312c28ccfb58, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8213711347624996776, guid: 2dfd0b9e5e5d9024f8ff312c28ccfb58, type: 3}
       propertyPath: mySceneManager
       value: 
@@ -5650,6 +5654,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3124899088203880957, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124899088203880957, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: m_Volume
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124899088203880957, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 603a2cf3676eae34aad4600380a322d6, type: 3}
+    - target: {fileID: 3124899088203880957, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 603a2cf3676eae34aad4600380a322d6, type: 3}
     - target: {fileID: 3363625036064555007, guid: 16ef9e551f1801547b0d7668206aa177, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
